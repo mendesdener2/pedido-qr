@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="typing-text">Quer namorar comigo?</h1>
+    </div>
+
+    <div id="hearts-container"></div> <!-- Div para os corações flutuantes -->
+
+    <script>
+        // Função de digitação lenta
+        function typeWriter(text, element, delay = 150) {
+            let i = 0;
+            function typing() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typing, delay);
+                }
+            }
+            typing();
+        }
+
+        // Iniciar o efeito de digitação
+        const h1Text = document.getElementById('typing-text').textContent;
+        document.getElementById('typing-text').textContent = ''; // Limpa o texto antes de começar a digitar
+        typeWriter(h1Text, document.getElementById('typing-text'));
+
+        // Função para criar corações flutuantes
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw'; // Posição horizontal aleatória
+            heart.style.animationDuration = Math.random() * 3 + 5 + 's'; // Duração de animação aleatória
+            document.getElementById('hearts-container').appendChild(heart);
+
+            // Remove o coração após a animação
+            setTimeout(() => {
+                heart.remove();
+            }, 8000); // Duração total da animação
+        }
+
+        // Criar corações a cada intervalo
+        setInterval(createHeart, 500); // A cada 0,5 segundos, um novo coração é criado
+    </script>
+</body>
+</html>

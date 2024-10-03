@@ -1,0 +1,124 @@
+/* Estilo base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+}
+
+h1 {
+    font-size: 3rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 0.15em solid white;
+    letter-spacing: 0.1em;
+    max-width: 90vw; /* Limita a largura do texto para telas pequenas */
+}
+
+/* Corações flutuantes */
+#hearts-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.heart {
+    position: absolute;
+    bottom: -10vh;
+    width: 20px;
+    height: 20px;
+    background-color: #FF69B4;
+    border-radius: 50% 50% 0 0;
+    transform: rotate(45deg);
+    animation: float 7s ease-in infinite;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #FF69B4;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -10px;
+    left: 0;
+}
+
+.heart::after {
+    left: 10px;
+    top: 0;
+}
+
+/* Animação dos corações */
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+/* Responsividade para telas menores (celulares) */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem; /* Diminui o tamanho do texto em telas pequenas */
+        letter-spacing: 0.05em;
+    }
+
+    .heart {
+        width: 15px; /* Reduz o tamanho dos corações em telas menores */
+        height: 15px;
+    }
+
+    .heart::before,
+    .heart::after {
+        width: 15px;
+        height: 15px;
+    }
+}
+
+/* Responsividade para telas muito pequenas (celulares menores) */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem; /* Ajusta ainda mais o tamanho do texto em telas muito pequenas */
+    }
+
+    .heart {
+        width: 10px; /* Ainda menor para se adequar a telas pequenas */
+        height: 10px;
+    }
+
+    .heart::before,
+    .heart::after {
+        width: 10px;
+        height: 10px;
+    }
+}
